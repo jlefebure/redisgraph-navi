@@ -1,0 +1,62 @@
+{
+  "name": "redisgraph-navi",
+  "description": "RedisGraph Web UI",
+  "version": "1.0.0",
+  "version_short": "1.0",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "nodemon src/app.mjs",
+    "stop": "lsof -ti :3000 | xargs kill"
+  },
+  "homepage": "https://jlefebure.com/",
+  "author": "Jordan Lefébure",
+  "contributors": [
+    "Jordan Lefébure"
+  ],
+  "keywords": [
+    "redis",
+    "redisgraph",
+    "redisgraph-ui",
+    "graph"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlefebure/redisgraph-navi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jlefebure/redisgraph-navi/issues"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "license": "Apache License 2.0",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.0",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "rollup": "^1.20.0",
+    "rollup-plugin-css-only": "^2.0.0",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-svelte-ssr": "^1.0.0",
+    "rollup-plugin-terser": "^5.1.2",
+    "svelte": "^3.19.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "errorhandler": "^1.5.1",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "nodemon": "^2.0.2",
+    "recto": "4.4.1",
+    "redis": "^3.0.2",
+    "redisgraph.js": "^2.0.3",
+    "sirv-cli": "^0.4.4",
+    "svelte-routing": "^1.4.2",
+    "sveltestrap": "^3.3.2",
+    "vis-network": "7.4.0"
+  }
+}
