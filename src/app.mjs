@@ -15,12 +15,11 @@ const isProduction = process.env.NODE_ENV === 'production';
 // Create global app object
 const app = express();
 
-app.use(cors());
 
 // Normal express config defaults
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
 app.use(methodOverride());
 app.use(settings.NAVI_CLIENT_BASE_URL, express.static(__dirname + '/../public'));
 
@@ -66,7 +65,7 @@ app.use(function (err, req, res, next) {
 
 // finally, let's start our server...
 var server = app.listen(settings.NAVI_PORT, function () {
-    console.log('Server listening on port ' + server.address().port);
+    console.log('RedisGraph Navi listening on port ' + server.address().port);
     console.log('Client exposed on ' + settings.NAVI_EXTERNAL_URL + settings.NAVI_CLIENT_BASE_URL);
     console.log('Server exposed on ' + settings.NAVI_EXTERNAL_URL + settings.NAVI_API_BASE_URL);
 });

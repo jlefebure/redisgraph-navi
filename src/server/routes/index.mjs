@@ -5,6 +5,10 @@ import redis from "redis";
 const router = express.Router();
 const redisGraphClient = RedisGraph.Graph;
 
+
+/**
+ * Execute a query on RedisGraph
+ */
 router.post('/execute', async function (req, res) {
     let body = req.body;
     if (!body || !body.query) {
@@ -28,6 +32,9 @@ router.post('/execute', async function (req, res) {
     }
 });
 
+/**
+ * Try to connect to Redis, to check if the instance exists
+ */
 router.post('/connect', async function (req, res) {
     let body = req.body;
     if (!body || !body.host) {
@@ -65,6 +72,9 @@ router.post('/connect', async function (req, res) {
     });
 });
 
+/**
+ * Get a list of all graphs in a Redis instance
+ */
 router.get('/graphs', async function (req, res) {
     let query = req.query;
     if (!query || !query.host) {
@@ -117,7 +127,5 @@ router.get('/graphs', async function (req, res) {
         }
     });
 });
-
-
 
 export default router;
