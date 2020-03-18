@@ -3,7 +3,6 @@
     import {fade} from "svelte/transition"
     import GraphResult from "./components/GraphResult.svelte";
     import AlertMessage from "./components/AlertMessage.svelte";
-    import settings from '../settings'
     import ConnectionInfos from "./components/ConnectionInfos.svelte";
     import {host, port, connectionSuccessful} from "./stores/redis-connection"
     import {graph} from "./stores/graph"
@@ -12,7 +11,7 @@
     let query, results;
 
     let launchQuery = () => {
-        results = fetch(`${settings.navi.url}${settings.navi.api.baseUrl}/execute`, {
+        results = fetch(`%NAVI_EXTERNAL_URL%%NAVI_API_BASE_URL%/execute`, {
             headers: {
                 "Content-Type": "application/json"
             },

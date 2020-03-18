@@ -15,7 +15,7 @@
 
 
 
-<Router url="{url}">
+<Router url="{url}" basepath="%NAVI_CLIENT_BASE_URL%">
     <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/">RedisGraph Navi</NavbarBrand>
         <NavbarToggler on:click={() => (isOpen = !isOpen)}/>

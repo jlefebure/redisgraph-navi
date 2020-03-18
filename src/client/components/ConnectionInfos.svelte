@@ -3,13 +3,12 @@
     import {Row, Col, Input, Button, FormGroup, Label} from "sveltestrap"
     import {writable} from 'svelte/store';
     import {host, port, connectionSuccessful} from "../stores/redis-connection"
-    import settings from "../../settings"
     import AlertMessage from "./AlertMessage.svelte";
 
     let error = undefined;
 
     let connect = () => {
-        fetch(`${settings.navi.url}${settings.navi.api.baseUrl}/connect`, {
+        fetch(`%NAVI_EXTERNAL_URL%%NAVI_API_BASE_URL%/connect`, {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -29,7 +28,7 @@
                         $connectionSuccessful = false
                     }
                 })
-    }
+    };
 
     let keyUpEnter = (event) => {
         if (event.keyCode === 13)

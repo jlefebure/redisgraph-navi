@@ -109,9 +109,6 @@
 
             label.active = !label.active
             filterableLabels[iToFilter] = label
-
-            console.log(filterableLabels)
-            console.log(activeLabelsNames)
             buildGraph()
         }
     }
