@@ -4,21 +4,15 @@
     import {writable} from 'svelte/store';
     import {host, port, connectionSuccessful} from "../stores/redis-connection"
     import AlertMessage from "./AlertMessage.svelte";
+    import {connect} from "../services/redis";
 
     let error = undefined;
 
-    let connect = () => {
-        fetch(`%NAVI_EXTERNAL_URL%%NAVI_API_BASE_URL%/connect`, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "POST",
-            body: JSON.stringify({
-                host: $host,
-                port: $port
-            })
-        })
-                .then(response => response.json())
+    /**
+     * Try to connect to Redis.
+     */
+    let tryConnect = () => {
+        connect($host, $port)
                 .then(response => {
                     if (response.connected === true) {
                         error = undefined
@@ -30,9 +24,13 @@
                 })
     };
 
+    /**
+     * Launch the connection try if the enter key is hit
+     * @param event
+     */
     let keyUpEnter = (event) => {
         if (event.keyCode === 13)
-            connect()
+            tryConnect()
     };
 </script>
 
@@ -40,7 +38,7 @@
     <AlertMessage>
         {error}
     </AlertMessage>
-    {:else if $connectionSuccessful}
+{:else if $connectionSuccessful}
     <AlertMessage color="success">
         Connection successful !
     </AlertMessage>
@@ -70,6 +68,6 @@
                 placeholder="Redis Port"/>
     </Col>
     <Col md="3" class="d-md-flex align-items-end">
-        <Button class="m-1" on:click={connect} color="primary">Connect</Button>
+        <Button class="m-1" on:click={tryConnect} color="primary">Connect</Button>
     </Col>
 </Row>

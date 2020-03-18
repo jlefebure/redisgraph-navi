@@ -1,5 +1,10 @@
 <script>
     import {fly} from 'svelte/transition';
+
+    /**
+     * Color of the alert. Default is 'danger'
+     * @type {string}
+     */
     export let color = "danger"
 </script>
 

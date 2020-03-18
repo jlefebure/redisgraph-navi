@@ -1,15 +1,15 @@
 <script>
     import {onMount} from 'svelte';
     import {fade} from "svelte/transition"
-    import {host, port, connectionSuccessful} from "../stores/redis-connection"
+    import {host, port} from "../stores/redis-connection"
     import {graph} from "../stores/graph"
-
+    import {getGraphs} from "../services/redis"
     let graphs = [];
 
     onMount(async () => {
-        const res = await fetch(`%NAVI_EXTERNAL_URL%%NAVI_API_BASE_URL%/graphs?host=${$host}&port=${$port}`);
-        graphs = await res.json();
-        $graph = graphs[0]
+        const res = await getGraphs($host, $port);
+        $graph = res[0]
+        graphs = res
     });
 
 </script>

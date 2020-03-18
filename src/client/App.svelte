@@ -1,6 +1,5 @@
 <script>
-    import Home from "./Home.svelte";
-
+    import QueryPage from "./QueryPage.svelte";
     import {Router, Route} from "svelte-routing";
     import {Container, Navbar, NavbarBrand, NavbarToggler} from "sveltestrap";
     import "recto/dist/css/bootstrap.min.css";
@@ -13,8 +12,6 @@
     }
 </script>
 
-
-
 <Router url="{url}" basepath="%NAVI_CLIENT_BASE_URL%">
     <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/">RedisGraph Navi</NavbarBrand>
@@ -22,7 +19,7 @@
     </Navbar>
     <Container class="bg-light h-100" fluid>
         <Route path="/">
-            <Home/>
+            <QueryPage/>
         </Route>
     </Container>
 </Router>

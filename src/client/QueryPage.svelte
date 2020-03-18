@@ -7,37 +7,29 @@
     import {host, port, connectionSuccessful} from "./stores/redis-connection"
     import {graph} from "./stores/graph"
     import GraphList from "./components/GraphList.svelte";
+    import {executeQuery} from "./services/redis"
 
     let query, results;
 
+    /**
+     * Launch the query to the redis instance.
+     */
     let launchQuery = () => {
-        results = fetch(`%NAVI_EXTERNAL_URL%%NAVI_API_BASE_URL%/execute`, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "POST",
-            body: JSON.stringify({
-                query: query,
-                graph: $graph,
-                host: $host,
-                port: $port
-            })
-        })
-                .then(response => response.json())
-                .then(element => {
-                    if (element.error) {
-                        return Promise.reject(element)
-                    } else {
-                        return element
-                    }
-                })
+        results = executeQuery(query, $graph, $host, $port)
     };
 
+    /**
+     * Launch the connection try if the enter key is hit
+     * @param event
+     */
     let keyUpEnter = (event) => {
         if (event.keyCode === 13)
             launchQuery()
     };
 
+    /**
+     * Reset all fields of the form
+     */
     let resetFields = () => {
         query = "";
         results = undefined
