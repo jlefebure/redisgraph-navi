@@ -110,6 +110,8 @@
                         label: e.properties[Object.keys(e.properties)[0]],
                     }
                 });
+                
+        nodes = filterOutDuplicates(nodes);
 
         const relations = values
                 .filter(e => e.relation !== undefined)
@@ -149,6 +151,18 @@
             filterableLabels[iToFilter] = label
             buildGraph()
         }
+    }
+
+    function filterOutDuplicates(a) {
+        return a
+        .sort((x,y)=>{return x.id-y.id})
+        .filter(function(item, pos) {
+            if(pos==0) {
+                return true;
+            } else {
+                return item.id != a[pos - 1].id;
+            }
+        });
     }
 
 </script>
