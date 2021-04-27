@@ -57,7 +57,7 @@
     "method-override": "3.0.0",
     "nodemon": "2.0.2",
     "recto": "4.4.1",
-    "redis": "3.0.2",
+    "redis": "3.1.1",
     "redisgraph.js": "2.0.3",
     "svelte-routing": "1.4.2",
     "sveltestrap": "3.3.3",
